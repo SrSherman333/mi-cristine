@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Te amo muchooo</title>
+    <link rel="stylesheet" href="style.css"
+</head>
+<body background="Fondo.jpg">
+  <div class="particulas"></div>
+    <div class="container">
+        <h1 class="animacion">¿Quieres ser mi San Valentín Bebé Cristineee?</h1>
+        <img src="Imagen1.gif" width="200px">
+        <div>
+            <button id="yesButton" style="background-color: #B2FBA5; color: #7bb074; padding: 10px 20px; margin-right: 20px; border: none; border-radius: 5px; cursor: pointer;">Sí</button>
+            <button onclick="negacion()" class="btn-celebrate"id="noButton" style="background-color: #ff6961; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">No</button>
+        </div>
+        <audio id="sonidoNegacion" src="No.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+      function negacion(){
+        const sonido = document.getElementById("sonidoNegacion");
+        sonido.currentTime = 0;
+        sonido.play();
+      }
+      
+      
+        const noButton = document.getElementById('noButton');
+        const yesButton = document.getElementById('yesButton');
+
+        yesButton.addEventListener('click', () => {
+            window.location.href = "pag2.html?celebrate=true";
+        });
+
+        function moveNoButton() {
+            const containerWidth = window.innerWidth - 100;
+            const containerHeight = window.innerHeight - 50;
+
+            const randomX = Math.random() * containerWidth;
+            const randomY = Math.random() * containerHeight;
+
+            noButton.style.position = 'fixed';
+            noButton.style.left = `${randomX}px`;
+            noButton.style.top = `${randomY}px`;
+        }
+
+        noButton.addEventListener('mouseover', moveNoButton);
+        noButton.addEventListener('touchstart', moveNoButton);
+        
+        function createHeart() {
+     const heart = document.createElement("div");
+     heart.innerHTML = "💟";
+     heart.className = "heart-particle";
+     
+     const edge = Math.random() < 0.5 ? "left" : "right";
+     heart.style[edge] = "0";
+     heart.style.top = `${Math.random() * 100}vh`;
+     
+     const colors = ["#ff4081", "#ff6b6b", "#ff7675", "#e84393"];
+     heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+    
+     heart.style.fontSize = `${10 + Math.random() * 20}px`;
+     
+     document.body.appendChild(heart);
+     
+     setTimeout(() => heart.remove(), 4000);
+   }
+
+   setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
